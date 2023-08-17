@@ -1,0 +1,11 @@
+{% extends 'base.django-html' %}
+{% load static %}
+{% block title %} About title {% endblock title %}
+{% block addStyles %}
+<link rel="stylesheet" href="{% static 'forum/forum.css' %}">
+{% endblock addStyles%}
+
+{% block content %}
+    {% include 'breadcrumbs.django-html' with links=links%}
+    <h1>About view</h1>
+{% endblock content %}

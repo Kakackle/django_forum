@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Forum Project{% endblock title %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="stylesheet" href="{% static 'nav.css' %}">
+    <link rel="stylesheet" href="{% static 'breadcrumbs.css' %}">
+    {% block addStyles %}
+    {% endblock addStyles %}
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="main-nav-left">
+            <a class="logo hover" href="{% url 'forum:home' %}">LOGO</a>
+        </div>
+        <div class="main-nav-right">
+            <ul class="nav-links">
+                <li><a class="nav-link hover" href="{% url 'forum:home' %}">Home</a></li>
+                <li><a class="nav-link hover" href="{% url 'forum:about' %}">About</a></li>
+            </ul>
+            <div class="nav-acc">
+                <p class="hover">ACC</p>
+            </div>
+        </div>
+    </nav>
+    <div class="page-content">
+    {% block content %}
+        Fallback content
+    {% endblock content %}
+    <div>
+</body>
+</html>

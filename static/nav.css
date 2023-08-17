@@ -1,0 +1,41 @@
+.main-nav{
+    height: 40px;
+    width: 100vw;
+    padding: 0 40px;
+    margin: 0 auto;
+    background-color: var(--main-dark-blue);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main-nav-left{
+
+}
+
+.logo{
+    color: white;
+    font-size: 2.5rem;
+    text-decoration: none;
+}
+
+.main-nav-right{
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links{
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link{
+    font-size: 2rem;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-acc{
+    font-size: 3rem;
+    color: var(--accent-yellow);
+}

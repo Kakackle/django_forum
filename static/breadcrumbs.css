@@ -1,0 +1,20 @@
+.breadcrumbs{
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--gray-light);
+    width: 100vw;
+}
+
+.bread-list{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.bread-item, .bread-break{
+    font-size: 2rem;
+    color: black;
+    text-decoration: none;
+}

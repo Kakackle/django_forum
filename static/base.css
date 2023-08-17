@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+    font-size: 62.5%;
+}
+
+/* 
+Potential palettes:
+- https://coolors.co/palette/000000-14213d-fca311-e5e5e5-ffffff
+- https://colorhunt.co/palette/0000004e4feb068fffeeeeee
+- https://coolors.co/palette/227c9d-17c3b2-ffcb77-fef9ef-fe6d73
+*/
+
+:root{
+    --max-page-width: 1440px;
+    --main-dark-blue: #14213D;
+    --accent-yellow: #FCA311;
+    --gray-light: #E5E5E5;
+}
+
+.hover:hover{
+    filter: brightness(0.5);
+    cursor: pointer;
+}

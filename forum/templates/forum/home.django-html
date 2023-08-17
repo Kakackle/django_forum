@@ -1,0 +1,12 @@
+{% extends 'base.django-html' %}
+{% load static %}
+{% block title %} Home title {% endblock title %}
+{% block addStyles %}
+<link rel="stylesheet" href="{% static 'forum/forum.css' %}">
+{% endblock addStyles%}
+
+{% block content %}
+    {% include 'breadcrumbs.django-html' %}
+    <h1>Home view</h1>
+    <p>{{test}}</p>
+{% endblock content %}
