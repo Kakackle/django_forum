@@ -9,6 +9,13 @@
 {% include 'breadcrumbs.django-html' with links=links%}
 {% comment %} FIXME: ehhh, obrazek nie chce wchodzic, strona nie istnieje mimo
 ze powinno byc okej sciezkami z settings... {% endcomment %}
+
+{% comment %} TODO: funkcjonalnosc po kliknieciu: 
+"reply",
+"edit",
+lubienia,
+przejscia do strony uzytkownika
+ {% endcomment %}
 <main class="main">
     <h1 class="title">{{thread.name}}</h1>
     <section class="posts">
@@ -27,9 +34,14 @@ ze powinno byc okej sciezkami z settings... {% endcomment %}
                         <p class="post-info">Date posted: {{post.date_created}}</p>
                         <p class="post-info">Last update: {{post.date_updated}}</p>
                     </div>
-                    <p class="likes">Likes: {{post.like_count}}</p>
+                    <p class="likes hover">Likes: {{post.like_count}}</p>
                 </div>
-                <p class="content-bot">{{post.content}}</p>
+                <p class="content">{{post.content}}</p>
+                <div class="content-bot">
+                    <a class="function-link hover" href="">reply</a>
+                    <a class="function-link hover" href="">edit</a>
+                    <a class="function-link hover" href="">delete</a>
+                </div>
             </div>
         </div>
         {% endfor %}

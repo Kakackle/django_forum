@@ -1,0 +1,23 @@
+{% extends 'base.django-html' %}
+{% load static %}
+{% block title %} {{user.username}} {% endblock title %}
+{% block addStyles %}
+<link rel="stylesheet" href="{% static 'forum/user.css' %}">
+{% endblock addStyles%}
+
+{% block content %}
+<main class="main">
+    <div class="user-div">
+        <div class="user-left">
+            <img class="profile-img" src="{{user.profile.profile_img.url}}">
+            <p class="name">{{user.username}}</p>
+        </div>
+        <div class="user-right">
+            <p class="user-info">{{user.profile.bio}}</p>
+            <p class="user-info">Reputation: {{user.profile.reputation}}</p>
+            <p class="user-info">Posts: {{user.profile.post_count}}</p>
+            <p class="user-info">Threads: {{user.profile.thread_count}}</p>
+        </div>
+    </div>
+</main>
+{% endblock content%}
