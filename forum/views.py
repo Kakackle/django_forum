@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse
 from . import models
-from django.contrib.auth.models import User
 
 # Create your views here.
 # TODO:
@@ -67,8 +66,3 @@ def thread_view(request, topic_slug, thread_slug):
                'posts': posts
                }
     return render(request, "forum/thread.django-html", context)
-
-def user_view(request, user_slug):
-    user = User.objects.get(username=user_slug)
-    context={'user': user}
-    return render(request, "forum/user.django-html", context)

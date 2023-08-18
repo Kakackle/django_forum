@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 40px;
     gap: 10px;
 }
 
@@ -15,6 +15,7 @@
 
 .user-left{
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 10px;
 }

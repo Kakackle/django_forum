@@ -5,8 +5,6 @@ app_name="forum"
 urlpatterns = [
     path("home", views.home_view, name="home"),
     path("about", views.about_view, name="about"),
-    #user
-    path("user/<slug:user_slug>", views.user_view, name="user"),
     # topic
     path("<slug:topic_slug>", views.topic_view, name="topic"),
     path("<slug:topic_slug>/edit", views.topic_view, name="topic_edit"),

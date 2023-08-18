@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %} {{user.username}} {% endblock title %}
 {% block addStyles %}
-<link rel="stylesheet" href="{% static 'forum/user.css' %}">
+<link rel="stylesheet" href="{% static 'users/user.css' %}">
 {% endblock addStyles%}
 
 {% block content %}
