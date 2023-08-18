@@ -4,12 +4,12 @@ names and links for pages to which to link
 {% endcomment %}
 <div class="breadcrumbs">
     <ul class="bread-list">
-        <a class="bread-item" href="{% url 'forum:home' %}">HOME</a>
+        <a class="bread-item hover" href="{% url 'forum:home' %}">HOME</a>
         {% if links %}
         {% for item in links %}
             <p class="bread-break">/</p>
             {% comment %} <a class="bread-item" href="{% url item.link %}">{{item.name}}</a> {% endcomment %}
-            <a class="bread-item" href={{item.link}}>{{item.name}}</a>
+            <a class="bread-item hover" href={{item.link}}>{{item.name}}</a>
             {% endfor %}
         {% endif %}
     </ul>

@@ -1,11 +1,48 @@
 {% extends 'base.django-html' %}
 {% load static %}
-{% block title %} {{topic.name}} {% endblock title %}
+{% block title %} Home title {% endblock title %}
 {% block addStyles %}
 <link rel="stylesheet" href="{% static 'forum/forum.css' %}">
 {% endblock addStyles%}
 
 {% block content %}
     {% include 'breadcrumbs.django-html' with links=links%}
-    <h1>Topic {{topic.name}} view</h1>
+    <main class="main">
+        <h1 class="head-1">{{topic.name|upper}} THREADS</h1>
+        <div class="controls">
+            <div class="label-div">
+                <label for="topic-search">Search for a thread:<label/>
+                <input type="search" class="search"
+                placeholder="Help with..." id="topic-search"/>
+            </div>
+            <a class="add-link hover" href="{% url 'forum:create_thread' topic_slug=topic.slug %}">CREATE A NEW THREAD</a>
+        </div>
+        <div class="topics-div">
+            <ul class="topics-list">
+            {% for thread in threads %}
+                <li class="topics-item">
+                    <a class="topic-link hover"
+                        href="{% url 'forum:thread' topic_slug=topic.slug thread_slug=thread.slug%}">
+                        {{thread.name}}</a>
+                    <div class="topic-controls">
+                        <a class="topic-link topic-edit hover"
+                            href="{% url 'forum:thread_edit' topic_slug=topic.slug thread_slug=thread.slug %}">EDIT</a>
+                        <a class="topic-link topic-del hover"
+                        href="{% url 'forum:thread_delete' topic_slug=topic.slug thread_slug=thread.slug %}">DELETE</a>
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
+            <div class="pages">
+                <p class="active">1</p>
+                <p>2</p>
+                <p>3</p>
+                <p>...</p>
+                <p>N</p>
+            </div>
+        </div>
+    
+    
+    </main>
+    <p>{{test}}</p>
 {% endblock content %}

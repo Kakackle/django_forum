@@ -3,16 +3,20 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
+    padding: 20px;
+    gap: 10px;
 }
 
 .head-1{
-    font-size: 4.8rem;
+    font-size: 72px;
     margin-bottom: 40px;
+    align-self: center;
+    /* justify-self: center; */
 }
 
 .controls{
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,7 +25,7 @@
 
 .label-div{
     display: flex;
-    gap: 20px;
+    gap: 40px;
     align-items: center;
 }
 
@@ -35,3 +39,66 @@
     color: var(--gray-light);
 }
 
+.add-link{
+    text-decoration: none;
+    font-size: 2rem;
+    background-color: var(--accent-yellow);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 5px;
+    border: 2px solid var(--main-dark-blue);
+}
+
+.topics-div{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
+.topics-list{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    border: 2px solid var(--gray-light);
+}
+
+.topics-item{
+    font-size: 3rem;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topics-item:nth-of-type(even){
+    background-color: var(--gray-light);
+    /* border-top: 1px solid black; */
+}
+
+
+.topic-link{
+    text-decoration: none;
+    color: black;
+}
+
+.topic-controls{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.pages{
+    align-self: center;
+    font-size: 2rem;
+    display: flex;
+    gap: 5px;
+}
+
+.active{
+    font-weight: 600;
+}
+
+.hover:hover{
+    border-bottom: 2px solid black;
+}

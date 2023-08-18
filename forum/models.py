@@ -6,7 +6,7 @@ from django.utils.crypto import get_random_string
 # Create your models here.
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     profile_img = models.ImageField(null=True, blank=True, upload_to="profile_images/")
     slug = models.SlugField(unique=True, default='temp')
     bio = models.TextField(max_length=500)
