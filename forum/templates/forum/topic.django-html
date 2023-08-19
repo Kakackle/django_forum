@@ -9,6 +9,7 @@
     {% include 'breadcrumbs.django-html' with links=links%}
     <main class="main">
         <h1 class="head-1">{{topic.name|upper}} THREADS</h1>
+        <p class="head-3">{{topic.description}}</p> 
         <div class="controls">
             <div class="label-div">
                 <label for="topic-search">Search for a thread:<label/>

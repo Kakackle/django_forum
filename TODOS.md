@@ -14,4 +14,8 @@ TODO: wiecej danych
 
 TODO: czemu obrazki nie dzialaja...
 
-TODO: 
+TODO: dodanie wszedzie zwracania 404 albo czegos gdzie podajesz slug i chcesz konkretny obiekt z db
+
+TODO: zaczac od jakichkolwiek testow, chociaz jeden, dwa czy dziala zwracanie strony a potem jakos o pobieraniu danych
+
+TODO: wyswietlanie wiecej informacji ktore mam, tzn description, daty itd

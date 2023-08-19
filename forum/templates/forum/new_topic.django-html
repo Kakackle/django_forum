@@ -1,0 +1,23 @@
+{% extends 'base.django-html' %}
+{% load static %}
+{% block title %} New topic {% endblock title %}
+{% block addStyles %}
+<link rel="stylesheet" href="{% static 'users/user.css' %}">
+{% endblock addStyles%}
+
+{% block content %}
+    <main class="main">
+        <form method="post">
+            {% csrf_token %}
+            <div class="label-div">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="label-div">
+                <label for="desc">Name:</label>
+                <textarea type="text" id="desc" name="desc"></textarea>
+            </div>
+            <button type="submit" class="btn">ADD</button>
+        </form>
+    </main>
+{% endblock content%}

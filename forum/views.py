@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_list_or_404
 from django.urls import reverse
 from . import models
+from django.contrib.auth.models import User
+
+from .forms import NewTopicForm
 
 # Create your views here.
 # TODO:
@@ -66,3 +69,53 @@ def thread_view(request, topic_slug, thread_slug):
                'posts': posts
                }
     return render(request, "forum/thread.django-html", context)
+
+
+def new_topic(request):
+
+    if request.method == 'POST':
+        name = request.POST['name']
+        desc = request.POST['desc']
+
+        user = User.objects.first()
+
+        topic = models.Topic.objects.create(
+            name=name,
+            description=desc,
+            author=user
+        )
+
+        return redirect('forum:home')
+    
+    return render(request, 'forum/new_topic.django-html')
+
+
+def new_topic_forms(request):
+
+    if request.method == 'POST':
+        # name = request.POST['name']
+        # desc = request.POST['desc']
+
+        form = NewTopicForm(request.POST)
+
+        user = User.objects.first()
+        if form.is_valid():
+            topic = form.save()
+            
+            # tutaj dodawanie dodatkowych pol typu related
+            # topic = form.save(commit=False)
+            # topic.save()
+
+
+        # topic = models.Topic.objects.create(
+        #     name=name,
+        #     description=desc,
+        #     author=user
+        # )
+
+        return redirect('forum:home')
+    else:
+        form = NewTopicForm()
+    # TODO: dodaj html ktory by przyjmowal form i wyswietlal z:
+    # https://simpleisbetterthancomplex.com/series/2017/09/18/a-complete-beginners-guide-to-django-part-3.html
+    return render(request, 'forum/new_topic.django-html', {'form': form})

@@ -10,9 +10,15 @@
 
 .head-1{
     font-size: 72px;
-    margin-bottom: 40px;
+    
     align-self: center;
     /* justify-self: center; */
+}
+
+.head-3{
+    font-size: 24px;
+    font-weight: 300;
+    margin-bottom: 40px;
 }
 
 .controls{
