@@ -7,13 +7,11 @@ urlpatterns = [
     path("about", views.about_view, name="about"),
     # topic
     path("new_topic", views.new_topic, name="new_topic"),
-    path("new_topic_form", views.new_topic_form, name="new_topic_form"),
-    path("new_topic_form_crispy", views.new_topic_form_crispy, name="new_topic_form_crispy"),
-    path("new_topic_form_includes", views.new_topic_form_includes, name="new_topic_form_includes"),
     path("<slug:topic_slug>", views.topic_view, name="topic"),
     path("<slug:topic_slug>/edit", views.topic_view, name="topic_edit"),
     path("<slug:topic_slug>/delete", views.topic_view, name="topic_delete"),
     # thread
+    path("<slug:topic_slug>/new_thread", views.new_thread, name="new_thread"),
     path("<slug:topic_slug>/<slug:thread_slug>", views.thread_view, name="thread"),
     path("<slug:topic_slug>/<slug:thread_slug>/edit", views.topic_view, name="thread_edit"),
     path("<slug:topic_slug>/<slug:thread_slug>/delete", views.topic_view, name="thread_delete"),

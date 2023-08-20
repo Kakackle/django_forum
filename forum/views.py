@@ -3,7 +3,7 @@ from django.urls import reverse
 from . import models
 from django.contrib.auth.models import User
 
-from .forms import NewTopicForm
+from .forms import NewTopicForm, NewThreadForm
 
 # Create your views here.
 # TODO:
@@ -70,55 +70,14 @@ def thread_view(request, topic_slug, thread_slug):
                }
     return render(request, "forum/thread.django-html", context)
 
-
 def new_topic(request):
-
-    if request.method == 'POST':
-        name = request.POST['name']
-        desc = request.POST['desc']
-
-        user = User.objects.first()
-
-        topic = models.Topic.objects.create(
-            name=name,
-            description=desc,
-            author=user
-        )
-
-        return redirect('forum:home')
-    
-    return render(request, 'forum/new_topic.django-html')
-
-
-def new_topic_form(request):
-
-    if request.method == 'POST':
-        form = NewTopicForm(request.POST)
-        user = User.objects.first()
-
-        if form.is_valid():
-            # dodawanie samo 
-            # topic = form.save()
-            
-            # tutaj dodawanie dodatkowych pol typu related
-            topic = form.save(commit=False)
-            topic.author = user
-            topic.save()
-
-            return redirect('forum:home')
-    else:
-        form = NewTopicForm()
-    # TODO: dodaj html ktory by przyjmowal form i wyswietlal z:
-    # https://simpleisbetterthancomplex.com/series/2017/09/18/a-complete-beginners-guide-to-django-part-3.html
-    return render(request, 'forum/new_topic_form.django-html', {'form': form})
-
-def new_topic_form_crispy(request):
     if request.method == 'POST':
         form = NewTopicForm(request.POST)
         user = User.objects.first()
 
         if form.is_valid():
             topic = form.save(commit=False)
+            #wlasne pole, z modelu z related field
             topic.author = user
             topic.save()
             return redirect('forum:home')
@@ -126,16 +85,25 @@ def new_topic_form_crispy(request):
         form = NewTopicForm()
     return render(request, 'forum/new_topic_form_crispy.django-html', {'form': form})
 
-def new_topic_form_includes(request):
+def new_thread(request, topic_slug):
+    topic = models.Topic.objects.get(slug=topic_slug)
+    user = User.objects.first()
     if request.method == 'POST':
-        form = NewTopicForm(request.POST)
-        user = User.objects.first()
-
+        form = NewThreadForm(request.POST)
         if form.is_valid():
-            topic = form.save(commit=False)
-            topic.author = user
-            topic.save()
-            return redirect('forum:home')
+            thread = form.save(commit=False)
+            #wlasne pola, z modelu z related field
+            thread.author = user
+            thread.topic = topic
+            thread.save()
+
+            #dodatkowo tworzony initial obiekt post w thread
+            post = models.Post.objects.create(
+                author = user,
+                content = form.cleaned_data.get('content'),
+                thread=thread
+            )
+            return redirect('forum:thread', topic_slug=topic_slug, thread_slug=thread.slug)
     else:
-        form = NewTopicForm()
-    return render(request, 'forum/new_topic_include.django-html', {'form': form})
+        form = NewThreadForm()
+    return render(request, 'forum/new_thread.django-html', {'form': form})

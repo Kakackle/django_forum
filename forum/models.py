@@ -25,11 +25,11 @@ class UserProfile(models.Model):
 
 class Topic(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=250)
+    name = models.CharField('Topic name', max_length=250)
     date_created = models.DateTimeField(auto_now_add=True, blank=True)
     last_thread_date = models.DateTimeField(null=True, blank=True)
     # last_reply_date = models.DateTimeField()
-    description = models.TextField(max_length=500)
+    description = models.TextField('Topic description', max_length=500)
     slug = models.SlugField(unique=True, default='temp')
     thread_count = models.PositiveIntegerField(default=0)
 
@@ -44,7 +44,7 @@ class Topic(models.Model):
 class Thread(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE , related_name="threads")
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE, related_name="threads")
-    name = models.CharField(max_length=250)
+    name = models.CharField('Thread name', max_length=250)
     date_created = models.DateTimeField(auto_now_add=True, blank=True)
     last_reply_date = models.DateTimeField(null=True, blank=True)
     slug = models.SlugField(unique=True, default='temp')
@@ -62,7 +62,7 @@ class Thread(models.Model):
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
     thread = models.ForeignKey(Thread, on_delete=models.CASCADE, related_name="posts")
-    content = models.TextField(max_length=2000)
+    content = models.TextField('Post content', max_length=2000)
     date_created = models.DateTimeField(auto_now_add=True, blank=True)
     date_updated = models.DateTimeField(auto_now=True, blank=True, null=True)
     like_count = models.IntegerField(default=0)

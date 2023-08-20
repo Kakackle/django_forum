@@ -16,7 +16,7 @@
                 <input type="search" class="search"
                 placeholder="Help with..." id="topic-search"/>
             </div>
-            <a class="add-link hover" href="{% url 'forum:create_thread' topic_slug=topic.slug %}">CREATE A NEW THREAD</a>
+            <a class="add-link hover" href="{% url 'forum:new_thread' topic_slug=topic.slug %}">CREATE A NEW THREAD</a>
         </div>
         <div class="topics-div">
             <ul class="topics-list">
