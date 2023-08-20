@@ -7,6 +7,7 @@ urlpatterns = [
     path("about", views.about_view, name="about"),
     # topic
     path("new_topic", views.new_topic, name="new_topic"),
+    path("new_topic_form", views.new_topic_form, name="new_topic_form"),
     path("<slug:topic_slug>", views.topic_view, name="topic"),
     path("<slug:topic_slug>/edit", views.topic_view, name="topic_edit"),
     path("<slug:topic_slug>/delete", views.topic_view, name="topic_delete"),

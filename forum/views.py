@@ -90,21 +90,23 @@ def new_topic(request):
     return render(request, 'forum/new_topic.django-html')
 
 
-def new_topic_forms(request):
+def new_topic_form(request):
 
     if request.method == 'POST':
         # name = request.POST['name']
         # desc = request.POST['desc']
 
         form = NewTopicForm(request.POST)
-
         user = User.objects.first()
+
         if form.is_valid():
-            topic = form.save()
+            # dodawanie samo 
+            # topic = form.save()
             
             # tutaj dodawanie dodatkowych pol typu related
-            # topic = form.save(commit=False)
-            # topic.save()
+            topic = form.save(commit=False)
+            topic.author = user
+            topic.save()
 
 
         # topic = models.Topic.objects.create(
@@ -113,9 +115,9 @@ def new_topic_forms(request):
         #     author=user
         # )
 
-        return redirect('forum:home')
+            return redirect('forum:home')
     else:
         form = NewTopicForm()
     # TODO: dodaj html ktory by przyjmowal form i wyswietlal z:
     # https://simpleisbetterthancomplex.com/series/2017/09/18/a-complete-beginners-guide-to-django-part-3.html
-    return render(request, 'forum/new_topic.django-html', {'form': form})
+    return render(request, 'forum/new_topic_form.django-html', {'form': form})
