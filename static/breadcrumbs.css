@@ -1,7 +1,7 @@
 .breadcrumbs{
     display: flex;
     align-items: center;
-    padding: 10px 20px;
+    padding: 5px 40px;
     background-color: var(--gray-light);
     width: 100vw;
 }
@@ -14,11 +14,11 @@
 }
 
 .bread-item, .bread-break{
-    font-size: 1.5rem;
+    font-size: 20px;
     color: black;
     text-decoration: none;
 }
 
-.hover:hover{
+.bread-hover:hover{
     border-bottom: 2px solid black;
 }

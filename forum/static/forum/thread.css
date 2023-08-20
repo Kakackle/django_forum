@@ -45,11 +45,11 @@
 }
 
 .author-name{
-    font-size: 1.5rem;
+    font-size: 15px;
 }
 
 .author-info{
-    font-size: 1.2rem;
+    font-size: 12px;
     font-weight: 400;
 }
 
@@ -70,15 +70,15 @@
 .dates{
     display: flex;
     gap: 10px;
-    font-size: 2rem;
+    font-size: 15px;
 }
 
 .likes{
-    font-size: 1.5rem;
+    font-size: 20px;
 }
 
 .content{
-    font-size: 1.5rem;
+    font-size: 15px;
     font-weight: 300;
 }
 
@@ -96,12 +96,12 @@
     /* color: var(--gray-light); */
     color: black;
     font-weight: 300;
-    font-size: 1.5rem;
+    font-size: 15px;
 }
 
 .pages{
     align-self: center;
-    font-size: 2rem;
+    font-size: 20px;
     display: flex;
     gap: 5px;
 }

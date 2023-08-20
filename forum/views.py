@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect, get_list_or_404
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import Http404
 from django.urls import reverse
 from . import models
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from .forms import NewTopicForm, NewThreadForm
 
@@ -30,7 +32,11 @@ def about_view(request):
            context)
 
 def topic_view(request, topic_slug):
-    topic = models.Topic.objects.get(slug=topic_slug)
+    try:
+        topic = get_object_or_404(models.Topic, slug=topic_slug)
+    except Http404:
+        return redirect('forum:home')
+    # topic = models.Topic.objects.get(slug=topic_slug)
     link_string = reverse('forum:topic', kwargs={'topic_slug':topic_slug})
     threads = list(topic.threads.all())
 
@@ -43,14 +49,16 @@ def topic_view(request, topic_slug):
                'threads': threads}
     return render(request, "forum/topic.django-html", context)
 
-def add_topic_view(request):
-    pass
-
-
 def thread_view(request, topic_slug, thread_slug):
-    topic = models.Topic.objects.get(slug=topic_slug)
+    try:
+        topic = get_object_or_404(models.Topic, slug=topic_slug)
+    except Http404:
+        return redirect('forum:home')
     topic_link_string = reverse('forum:topic', kwargs={'topic_slug':topic_slug})
-    thread = models.Thread.objects.get(slug=thread_slug)
+    try:
+        thread = get_object_or_404(models.Thread, slug=thread_slug)
+    except Http404:
+        return redirect('forum:home')
     thread_link_string = reverse('forum:thread', kwargs={'topic_slug':topic_slug, 'thread_slug': thread_slug})
     posts = list(thread.posts.all())
     print(posts[0].author.profile.bio)
@@ -70,6 +78,7 @@ def thread_view(request, topic_slug, thread_slug):
                }
     return render(request, "forum/thread.django-html", context)
 
+@login_required(login_url='accounts:login')
 def new_topic(request):
     if request.method == 'POST':
         form = NewTopicForm(request.POST)
@@ -85,21 +94,25 @@ def new_topic(request):
         form = NewTopicForm()
     return render(request, 'forum/new_topic_form_crispy.django-html', {'form': form})
 
+@login_required(login_url='accounts:login')
 def new_thread(request, topic_slug):
-    topic = models.Topic.objects.get(slug=topic_slug)
-    user = User.objects.first()
+    try:
+        topic = get_object_or_404(models.Topic, slug=topic_slug)
+    except Http404:
+        return redirect('forum:home')
+    # user = User.objects.first()
     if request.method == 'POST':
         form = NewThreadForm(request.POST)
         if form.is_valid():
             thread = form.save(commit=False)
             #wlasne pola, z modelu z related field
-            thread.author = user
+            thread.author = request.user
             thread.topic = topic
             thread.save()
 
             #dodatkowo tworzony initial obiekt post w thread
             post = models.Post.objects.create(
-                author = user,
+                author = request.user,
                 content = form.cleaned_data.get('content'),
                 thread=thread
             )

@@ -1,5 +1,5 @@
 .main-nav{
-    height: 40px;
+    height: 50px;
     width: 100vw;
     padding: 0 40px;
     margin: 0 auto;
@@ -10,32 +10,45 @@
 }
 
 .main-nav-left{
-
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .logo{
     color: white;
-    font-size: 2.5rem;
+    font-size: 30px;
     text-decoration: none;
 }
 
 .main-nav-right{
     display: flex;
+    flex-direction: row;
+    align-items: center;
     gap: 40px;
 }
 
-.nav-links{
+.nav-links-main{
     display: flex;
+    flex-direction: row;
     gap: 20px;
+    margin-bottom: 0;
 }
 
-.nav-link{
-    font-size: 2rem;
+.nav-link-main{
+    font-size: 20px;
     color: white;
     text-decoration: none;
 }
 
 .nav-acc{
-    font-size: 3rem;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    font-size: 25px;
     color: var(--accent-yellow);
 }
+
+/* :hover:hover{
+    border-bottom: 2px solid white;
+} */

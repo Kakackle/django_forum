@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'widget_tweaks',
     'forum',
-    'users'
+    'users',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -107,6 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# wskazujesz gdzie ma przejsc bo wbudyowanym wylogowaniu
+LOGOUT_REDIRECT_URL = 'forum:home'
+LOGIN_REDIRECT_URL = 'forum:home'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
