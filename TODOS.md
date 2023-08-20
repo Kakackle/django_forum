@@ -19,3 +19,5 @@ TODO: dodanie wszedzie zwracania 404 albo czegos gdzie podajesz slug i chcesz ko
 TODO: zaczac od jakichkolwiek testow, chociaz jeden, dwa czy dziala zwracanie strony a potem jakos o pobieraniu danych
 
 TODO: wyswietlanie wiecej informacji ktore mam, tzn description, daty itd
+
+FIXME: wielkosci czcionek sie zjebaly przez to ze usunalem 62.5% - zrob po prostu na px i fajrant

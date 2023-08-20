@@ -1,0 +1,18 @@
+{% extends 'base.django-html' %}
+{% load static %}
+{% block title %} Topic Django Form {% endblock title%}
+{% block addStyles %}
+<link rel="stylesheet" href="{% static 'users/user.css' %}">
+{% endblock addStyles%}
+
+{% block content %}
+<main class="main">
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {% include 'includes/form.django-html' with form=form%}
+        {% comment %} {{ form.as_p }} {% endcomment %}
+        <button type="submit" class="btn">Post</button>
+    </form>
+</main>
+
+{% endblock content%}

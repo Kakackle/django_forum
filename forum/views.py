@@ -93,9 +93,6 @@ def new_topic(request):
 def new_topic_form(request):
 
     if request.method == 'POST':
-        # name = request.POST['name']
-        # desc = request.POST['desc']
-
         form = NewTopicForm(request.POST)
         user = User.objects.first()
 
@@ -108,16 +105,37 @@ def new_topic_form(request):
             topic.author = user
             topic.save()
 
-
-        # topic = models.Topic.objects.create(
-        #     name=name,
-        #     description=desc,
-        #     author=user
-        # )
-
             return redirect('forum:home')
     else:
         form = NewTopicForm()
     # TODO: dodaj html ktory by przyjmowal form i wyswietlal z:
     # https://simpleisbetterthancomplex.com/series/2017/09/18/a-complete-beginners-guide-to-django-part-3.html
     return render(request, 'forum/new_topic_form.django-html', {'form': form})
+
+def new_topic_form_crispy(request):
+    if request.method == 'POST':
+        form = NewTopicForm(request.POST)
+        user = User.objects.first()
+
+        if form.is_valid():
+            topic = form.save(commit=False)
+            topic.author = user
+            topic.save()
+            return redirect('forum:home')
+    else:
+        form = NewTopicForm()
+    return render(request, 'forum/new_topic_form_crispy.django-html', {'form': form})
+
+def new_topic_form_includes(request):
+    if request.method == 'POST':
+        form = NewTopicForm(request.POST)
+        user = User.objects.first()
+
+        if form.is_valid():
+            topic = form.save(commit=False)
+            topic.author = user
+            topic.save()
+            return redirect('forum:home')
+    else:
+        form = NewTopicForm()
+    return render(request, 'forum/new_topic_include.django-html', {'form': form})

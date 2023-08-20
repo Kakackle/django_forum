@@ -8,6 +8,8 @@ urlpatterns = [
     # topic
     path("new_topic", views.new_topic, name="new_topic"),
     path("new_topic_form", views.new_topic_form, name="new_topic_form"),
+    path("new_topic_form_crispy", views.new_topic_form_crispy, name="new_topic_form_crispy"),
+    path("new_topic_form_includes", views.new_topic_form_includes, name="new_topic_form_includes"),
     path("<slug:topic_slug>", views.topic_view, name="topic"),
     path("<slug:topic_slug>/edit", views.topic_view, name="topic_edit"),
     path("<slug:topic_slug>/delete", views.topic_view, name="topic_delete"),

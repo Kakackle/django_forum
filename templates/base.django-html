@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static 'base.css' %}">
     <link rel="stylesheet" href="{% static 'nav.css' %}">
     <link rel="stylesheet" href="{% static 'breadcrumbs.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}"> {% endcomment %}
     {% block addStyles %}
     {% endblock addStyles %}
 </head>
