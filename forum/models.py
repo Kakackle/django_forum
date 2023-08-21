@@ -41,6 +41,9 @@ class Topic(models.Model):
     def __str__(self):
         return self.name
     
+    def get_thread_count(self):
+        return Thread.objects.filter(topic=self).count()
+    
 class Thread(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE , related_name="threads")
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE, related_name="threads")
@@ -58,6 +61,9 @@ class Thread(models.Model):
     
     def __str__(self):
         return self.name
+    
+    def get_last_post(self):
+        return Post.objects.filter(thread=self).order_by('-date_created').first()
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")

@@ -17,7 +17,7 @@
                 <label for="desc">Name:</label>
                 <textarea type="text" id="desc" name="desc"></textarea>
             </div>
-            <button type="submit" class="btn">ADD</button>
+            <button type="submit" class="btn btn-primary">ADD</button>
         </form>
     </main>
 {% endblock content%}

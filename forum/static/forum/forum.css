@@ -9,14 +9,14 @@
 }
 
 .head-1{
-    font-size: 72px;
+    font-size: 64px;
     
     align-self: center;
     /* justify-self: center; */
 }
 
 .head-3{
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 300;
     margin-bottom: 40px;
 }
@@ -67,6 +67,7 @@
     flex-direction: column;
     list-style: none;
     border: 2px solid var(--gray-light);
+    padding: 0;
 }
 
 .topics-item{
@@ -114,3 +115,8 @@
 /* .hover:hover{
     border-bottom: 2px solid black;
 } */
+
+.last-post{
+    font-size: 15px;
+    font-weight: 300;
+}

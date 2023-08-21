@@ -5,7 +5,7 @@ from . import models
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-from .forms import NewTopicForm, NewThreadForm
+from .forms import NewTopicForm, NewThreadForm, NewPostForm
 
 # Create your views here.
 # TODO:
@@ -120,3 +120,26 @@ def new_thread(request, topic_slug):
     else:
         form = NewThreadForm()
     return render(request, 'forum/new_thread.django-html', {'form': form})
+
+@login_required
+def new_post(request, topic_slug, thread_slug):
+    try:
+        thread = get_object_or_404(models.Thread, slug=thread_slug)
+    except Http404:
+        return redirect('forum:home')
+    
+    posts = reversed(thread.posts.all())
+
+    if request.method == 'POST':
+        form = NewPostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.thread = thread
+            post.save()
+            return redirect('forum:thread', topic_slug=thread.topic.slug, thread_slug=thread_slug)
+    else:
+        form = NewPostForm()
+    return render(request, 'forum/new_post.django-html', {'form': form,
+                                                          'thread': thread,
+                                                          'posts': posts})

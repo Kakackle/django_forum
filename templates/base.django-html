@@ -64,14 +64,14 @@
                       <li><a class="dropdown-item" href="#">My account</a></li>
                       <li><a class="dropdown-item" href="#">Change password</a></li>
                       <div class="dropdown-divider"></div>
-                      <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Log out</a></li>
+                      <li><a class="dropdown-item" href="{% url 'accounts:logout' %}?next={{request.path}}">Log out</a></li>
                     </ul>
                   </div>
             </div>
             {% else %}
             <div class="nav-acc">
-                <a href="{% url 'accounts:login' %}" class="nav-link-main hover">Log in</a>
-                <a href="{% url 'accounts:signup' %}" class="nav-link-main hover">Sign up</a>
+                <a href="{% url 'accounts:login' %}?next={{request.path}}" class="nav-link-main hover">Log in</a>
+                <a href="{% url 'accounts:signup' %}?next={{request.path}}" class="nav-link-main hover">Sign up</a>
             </div>
             {% endif %}    
         </div>

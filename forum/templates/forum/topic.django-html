@@ -18,6 +18,7 @@
             </div>
             <a class="add-link hover" href="{% url 'forum:new_thread' topic_slug=topic.slug %}">CREATE A NEW THREAD</a>
         </div>
+        {% if threads %}
         <div class="topics-div">
             <ul class="topics-list">
             {% for thread in threads %}
@@ -25,6 +26,12 @@
                     <a class="topic-link hover"
                         href="{% url 'forum:thread' topic_slug=topic.slug thread_slug=thread.slug%}">
                         {{thread.name}}</a>
+                    {% with post=thread.get_last_post %}
+                        {% if post%}
+                        <p class="last-post">Last post by: {{post.author.username}} at {{post.date_created}}<p>
+                        {% endif %}
+                    {% endwith%}
+                        
                     <div class="topic-controls">
                         <a class="topic-link topic-edit hover"
                             href="{% url 'forum:thread_edit' topic_slug=topic.slug thread_slug=thread.slug %}">EDIT</a>
@@ -42,8 +49,9 @@
                 <p>N</p>
             </div>
         </div>
-    
-    
+        {% else %}
+            <h3 class="head-3">No threads to display. Make one!</h3>
+        {% endif %}
     </main>
     <p>{{test}}</p>
 {% endblock content %}

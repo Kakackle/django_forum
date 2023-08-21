@@ -1,5 +1,5 @@
 from django import forms
-from .models import Topic, Thread
+from .models import Topic, Thread, Post
 
 class NewTopicForm(forms.ModelForm):
 
@@ -19,3 +19,8 @@ class NewThreadForm(forms.ModelForm):
     class Meta:
         model = Thread
         fields = ['name', ]
+
+class NewPostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['content']

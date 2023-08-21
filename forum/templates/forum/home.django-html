@@ -17,6 +17,7 @@
             </div>
             <a class="add-link hover" href="{% url 'forum:new_topic' %}">CREATE A NEW TOPIC</a>
         </div>
+        {% if topics %}
         <div class="topics-div">
             <ul class="topics-list">
             {% for topic in topics %}
@@ -34,6 +35,9 @@
             </ul>
             <p class="pages">1 ... N</p>
         </div>
+        {% else %}
+            <h1 class="head-3">No topics yet! Create some for others to talk in</h1>
+        {% endif %}
     
     
     </main>

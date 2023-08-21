@@ -1,0 +1,55 @@
+{% extends 'base.django-html' %}
+{% load static %}
+{% block title %} Topic Django Form {% endblock title%}
+{% block addStyles %}
+<link rel="stylesheet" href="{% static 'forum/forum.css' %}">
+<link rel="stylesheet" href="{% static 'forum/thread.css' %}">
+<link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
+{% endblock addStyles%}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<main class="main">
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form | crispy }}
+        <button type="submit" class="btn btn-primary">Post</button>
+    </form>
+    <div class="prev-posts">
+        <p class="title">Previous posts from the thread (from latest) </p>
+        <section class="posts">
+            {% for post in posts %}
+            <div class="post-div {% if forloop.first %} first-post {% endif %}">
+                <div class="author-div">
+                    <img class="author-img" src="{{post.author.profile.profile_img.url}}">
+                    <p class="author-name">{{post.author.username}}</p>
+                    <p class="author-info">Rep: {{post.author.profile.reputation}}</p>
+                    <p class="author-info">Threads: {{post.author.profile.thread_count}}</p>
+                    <p class="author-info">Posts: {{post.author.profile.post_count}}</p>
+                </div>
+                <div class="content-div">
+                    <div class="content-top">
+                        <div class="dates">
+                            <p class="post-info">Date posted: {{post.date_created}}</p>
+                            <p class="post-info">Last update: {{post.date_updated}}</p>
+                        </div>
+                        <p class="likes hover">Likes: {{post.like_count}}</p>
+                    </div>
+                    <p class="content">{{post.content}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+        <div class="pages">
+            <p class="active">1</p>
+            <p>2</p>
+            <p>3</p>
+            <p>...</p>
+            <p>N</p>
+        </div>
+    </div>
+</main>
+
+{% endblock content%}

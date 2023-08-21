@@ -20,7 +20,7 @@ przejscia do strony uzytkownika
     <h1 class="title">{{thread.name}}</h1>
     <section class="posts">
         {% for post in posts%}
-        <div class="post-div">
+        <div class="post-div {% if forloop.first %} first-post {% endif %}">
             <div class="author-div">
                 <img class="author-img" src="{{post.author.profile.profile_img.url}}">
                 <p class="author-name">{{post.author.username}}</p>
@@ -38,14 +38,19 @@ przejscia do strony uzytkownika
                 </div>
                 <p class="content">{{post.content}}</p>
                 <div class="content-bot">
+                    {% comment %} {% if post.author != user %}
                     <a class="function-link hover" href="">reply</a>
+                    {% endif %} {% endcomment %}
+                    {% if post.author == user %}
                     <a class="function-link hover" href="">edit</a>
                     <a class="function-link hover" href="">delete</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
         {% endfor %}
     </section>
+    <a class="reply btn btn-primary" href="{% url 'forum:new_post' topic_slug=thread.topic.slug thread_slug=thread.slug %}">Post a reply</a>
     <div class="pages">
         <p class="active">1</p>
         <p>2</p>

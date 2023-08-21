@@ -1,5 +1,3 @@
-TODO: Generalnie sprawdzanie przed wykonywaniem for w templates czy wgl lista istnieje / ma dlugosc > 0
-
 TODO: mam uzytkownikow ale niewiele z nimi robie - przydaloby sie jakos sprawdzac uzytkownika i udostepniac edycje, usuwanie tylko jesli zgadza sie autor z zalogowanym itd
 
 TODO: reply jakos na stronie? tak samo edit?
@@ -22,6 +20,9 @@ TODO: wyswietlanie wiecej informacji ktore mam, tzn description, daty itd
 TODO: tak samo jak topic i thread form na nowy psot itd
 
 
-TODO: przyciski wszedzie albo btn-primary albo powinno sie dac zmienic kolor kruca....
 
 TODO: https://simpleisbetterthancomplex.com/series/2017/10/02/a-complete-beginners-guide-to-django-part-5.html od Topic Posts View
+
+TODO: po kliknieciu logout zeby wracalo tam gdzie bylo?
+
+TODO: dodawanie uaktualniania rzeczy typu last posted date itd w views dodawanie postow i innych

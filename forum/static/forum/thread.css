@@ -17,14 +17,20 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    gap: 10px;
 }
 
 .post-div{
     display: flex;
     padding: 10px;
     gap: 20px;
+    border: 1px solid black;
     /* height: 100%; */
+}
+
+.first-post{
+    border-bottom: 20px solid var(--main-dark-blue);
 }
 
 .post-div:nth-of-type(even){
@@ -108,4 +114,8 @@
 
 .active{
     font-weight: 600;
+}
+
+.reply{
+    align-self: flex-end;
 }
