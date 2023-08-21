@@ -34,7 +34,7 @@ przejscia do strony uzytkownika
                         <p class="post-info">Date posted: {{post.date_created}}</p>
                         <p class="post-info">Last update: {{post.date_updated}}</p>
                     </div>
-                    <p class="likes hover">Likes: {{post.like_count}}</p>
+                    <p class="likes function-link hover">Likes: {{post.like_count}}</p>
                 </div>
                 <p class="content">{{post.content}}</p>
                 <div class="content-bot">
@@ -42,7 +42,8 @@ przejscia do strony uzytkownika
                     <a class="function-link hover" href="">reply</a>
                     {% endif %} {% endcomment %}
                     {% if post.author == user %}
-                    <a class="function-link hover" href="">edit</a>
+                    <a class="function-link hover"
+                        href="{% url 'forum:edit_post' topic_slug=thread.topic.slug thread_slug=thread.slug post_slug=post.slug %}">edit</a>
                     <a class="function-link hover" href="">delete</a>
                     {% endif %}
                 </div>

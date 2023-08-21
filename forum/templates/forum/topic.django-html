@@ -23,20 +23,24 @@
             <ul class="topics-list">
             {% for thread in threads %}
                 <li class="topics-item">
-                    <a class="topic-link hover"
+                    <a class="topic-link topic-left hover"
                         href="{% url 'forum:thread' topic_slug=topic.slug thread_slug=thread.slug%}">
                         {{thread.name}}</a>
-                    {% with post=thread.get_last_post %}
+                    <div class="topic-right">
+                        {% with post=thread.get_last_post %}
                         {% if post%}
                         <p class="last-post">Last post by: {{post.author.username}} at {{post.date_created}}<p>
                         {% endif %}
-                    {% endwith%}
-                        
-                    <div class="topic-controls">
-                        <a class="topic-link topic-edit hover"
-                            href="{% url 'forum:thread_edit' topic_slug=topic.slug thread_slug=thread.slug %}">EDIT</a>
-                        <a class="topic-link topic-del hover"
-                        href="{% url 'forum:thread_delete' topic_slug=topic.slug thread_slug=thread.slug %}">DELETE</a>
+                        {% endwith%}
+                        <p class="author">by: {{thread.author}}</p>
+                        <p class="last-post">{{thread.view_count}} views</p>
+                        <p class="last-post">{{thread.post_count}} posts</p>                            
+                        <div class="topic-controls">
+                            <a class="topic-link topic-edit hover"
+                                href="{% url 'forum:thread_edit' topic_slug=topic.slug thread_slug=thread.slug %}">EDIT</a>
+                            <a class="topic-link topic-del hover"
+                            href="{% url 'forum:thread_delete' topic_slug=topic.slug thread_slug=thread.slug %}">DELETE</a>
+                        </div>
                     </div>
                 </li>
             {% endfor %}

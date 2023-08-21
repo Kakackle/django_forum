@@ -16,13 +16,7 @@ TODO: zaczac od jakichkolwiek testow, chociaz jeden, dwa czy dziala zwracanie st
 
 TODO: wyswietlanie wiecej informacji ktore mam, tzn description, daty itd
 
-
-TODO: tak samo jak topic i thread form na nowy psot itd
-
+TODO: https://simpleisbetterthancomplex.com/series/2017/10/09/a-complete-beginners-guide-to-django-part-6.html od pagination
 
 
-TODO: https://simpleisbetterthancomplex.com/series/2017/10/02/a-complete-beginners-guide-to-django-part-5.html od Topic Posts View
 
-TODO: po kliknieciu logout zeby wracalo tam gdzie bylo?
-
-TODO: dodawanie uaktualniania rzeczy typu last posted date itd w views dodawanie postow i innych

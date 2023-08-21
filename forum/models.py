@@ -9,7 +9,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     profile_img = models.ImageField(null=True, blank=True, upload_to="profile_images/")
     slug = models.SlugField(unique=True, default='temp')
-    bio = models.TextField(max_length=500)
+    bio = models.TextField(max_length=500, null=True, blank=True)
     reputation = models.IntegerField(default=0)
     post_count = models.PositiveIntegerField(default=0)
     topic_count = models.PositiveIntegerField(default=0)
@@ -43,6 +43,9 @@ class Topic(models.Model):
     
     def get_thread_count(self):
         return Thread.objects.filter(topic=self).count()
+    
+    def get_last_thread(self):
+        return Thread.objects.filter(topic=self).order_by('-date_created').first()
     
 class Thread(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE , related_name="threads")

@@ -61,7 +61,7 @@
                       <p class="nav-acc">{{user.username}}</p>
                     </button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">My account</a></li>
+                      <li><a class="dropdown-item" href="{% url 'users:user' user_slug=user.username%}">My account</a></li>
                       <li><a class="dropdown-item" href="#">Change password</a></li>
                       <div class="dropdown-divider"></div>
                       <li><a class="dropdown-item" href="{% url 'accounts:logout' %}?next={{request.path}}">Log out</a></li>

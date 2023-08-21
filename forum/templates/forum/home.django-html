@@ -22,13 +22,24 @@
             <ul class="topics-list">
             {% for topic in topics %}
                 <li class="topics-item">
-                    <a class="topic-link hover" href="{% url 'forum:topic' topic_slug=topic.slug %}">
+                    <a class="topic-link topic-left hover" href="{% url 'forum:topic' topic_slug=topic.slug %}">
                         {{topic.name}}</a>
-                    <div class="topic-controls">
-                        <a class="topic-link topic-edit hover"
-                            href="{% url 'forum:topic_edit' topic_slug=topic.slug %}">EDIT</a>
-                        <a class="topic-link topic-del hover"
-                        href="{% url 'forum:topic_delete' topic_slug=topic.slug %}">DELETE</a>
+                    <div class="topic-right">
+                        {% with thread=topic.get_last_thread %}
+                            {% if thread %}
+                            <p class="last-post">Last thread by:
+                            {{thread.author.username}} at {{thread.date_created}}<p>
+                            {% endif %}
+                        {% endwith%}
+                        <p class="author">by: {{topic.author}}</p>
+                        <p class="last-post">{{topic.thread_count}} threads</p>
+                        
+                        <div class="topic-controls">
+                            <a class="topic-link topic-edit hover"
+                                href="{% url 'forum:topic_edit' topic_slug=topic.slug %}">EDIT</a>
+                            <a class="topic-link topic-del hover"
+                            href="{% url 'forum:topic_delete' topic_slug=topic.slug %}">DELETE</a>
+                        </div>
                     </div>
                 </li>
             {% endfor %}

@@ -19,7 +19,7 @@ urlpatterns = [
     # post
     path("<slug:topic_slug>/<slug:thread_slug>/post", views.new_post, name="new_post"),
     # path("<slug:topic_slug>/<slug:thread_slug>/", views.topic_view, name="create_post"),
-    path("<slug:topic_slug>/<slug:thread_slug>/<slug:post_slug>/edit", views.topic_view, name="edit_post"),
+    path("<slug:topic_slug>/<slug:thread_slug>/<slug:post_slug>/edit", views.PostUpdateView.as_view(), name="edit_post"),
     path("<slug:topic_slug>/<slug:thread_slug>/<slug:post_slug>/delete", views.topic_view, name="delete_post"),
 
 ]

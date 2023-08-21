@@ -105,6 +105,10 @@
     font-size: 15px;
 }
 
+.function-link:hover{
+    border-bottom: 2px solid black;
+}
+
 .pages{
     align-self: center;
     font-size: 20px;
