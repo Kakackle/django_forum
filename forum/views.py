@@ -282,3 +282,30 @@ class PostUpdateView(UpdateView):
                          thread_slug=post.thread.slug,
                         #  post_slug=post.topic.board.slug
                          )
+
+@login_required()
+def like_post_view(request, topic_slug, thread_slug, post_slug):
+    try:
+        post = get_object_or_404(models.Post, slug=post_slug)
+    except Http404:
+        return redirect('forum:home')
+    try:
+        thread = get_object_or_404(models.Post, slug=post_slug)
+    except Http404:
+        return redirect('forum:home')
+    user = request.user
+    if request.method == 'POST':
+        post_slug = request.POST.get('slug')
+        
+        if user in post.liked_by.all():
+            post.liked_by.remove(user)
+            post.like_count -=1
+        else:
+            post.liked_by.add(user)
+            post.like_count +=1
+        
+        print('post_liked_by: ', post.liked_by.all())
+        post.save()
+        return redirect('forum:thread',
+                        topic_slug=topic_slug,
+                        thread_slug=thread_slug)

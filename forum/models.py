@@ -61,6 +61,7 @@ class Post(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, blank=True)
     date_updated = models.DateTimeField(auto_now=True, blank=True, null=True)
     like_count = models.IntegerField(default=0)
+    liked_by = models.ManyToManyField(User, related_name='liked_posts', null=True, blank=True)
     slug = models.SlugField(unique=True, default='temp')
 
     def get_message_as_markdown(self):
