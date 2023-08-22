@@ -300,12 +300,28 @@ def like_post_view(request, topic_slug, thread_slug, post_slug):
         if user in post.liked_by.all():
             post.liked_by.remove(user)
             post.like_count -=1
+            post.author.profile.reputation -=1
         else:
             post.liked_by.add(user)
             post.like_count +=1
+            post.author.profile.reputation +=1
         
-        print('post_liked_by: ', post.liked_by.all())
+        # print('post_liked_by: ', post.liked_by.all())
         post.save()
+        user.profile.save()
         return redirect('forum:thread',
                         topic_slug=topic_slug,
                         thread_slug=thread_slug)
+@login_required()
+def delete_post_view(request, post_slug):
+    try:
+        post = get_object_or_404(models.Post, slug=post_slug)
+    except Http404:
+        return redirect('forum:home')
+    topic_slug = post.thread.topic.slug
+    thread_slug = post.thread.slug
+    post.delete()
+    return redirect('forum:thread',
+                    topic_slug=topic_slug,
+                    thread_slug=thread_slug)
+    
