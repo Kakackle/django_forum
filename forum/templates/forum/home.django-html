@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="{% static 'forum/forum.css' %}">
 {% endblock addStyles%}
 
+{% load humanize %}
+
 {% block content %}
     {% include 'breadcrumbs.django-html' %}
     <main class="main">
@@ -28,7 +30,7 @@
                         {% with thread=topic.get_last_thread %}
                             {% if thread %}
                             <p class="last-post">Last thread by:
-                            {{thread.author.username}} at {{thread.date_created}}<p>
+                            {{thread.author.username}} | {{thread.date_created|naturaltime}}<p>
                             {% endif %}
                         {% endwith%}
                         <p class="author">by: {{topic.author}}</p>
@@ -44,7 +46,9 @@
                 </li>
             {% endfor %}
             </ul>
-            <p class="pages">1 ... N</p>
+            <div class="pages">
+                {% include 'includes/pagination.django-html' with pagination=pagination %}
+            </div>
         </div>
         {% else %}
             <h1 class="head-3">No topics yet! Create some for others to talk in</h1>

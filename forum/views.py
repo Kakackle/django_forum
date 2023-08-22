@@ -9,6 +9,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import View, UpdateView
 from django.utils.decorators import method_decorator
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from .forms import NewTopicForm, NewThreadForm, NewPostForm
 
 # Create your views here.
@@ -20,9 +22,29 @@ from .forms import NewTopicForm, NewThreadForm, NewPostForm
 
 # home with topic boards to choose from
 def home_view(request):
-    topics = list(models.Topic.objects.all())
-    context = {'topics': topics}
+    topics = models.Topic.objects.all()
+
+    queryset = topics.order_by('-date_created')
+    paginator = Paginator(queryset, 10)
+    page = request.GET.get('page', 1)
+
+    try:
+        topics = paginator.page(page)
+    except PageNotAnInteger:
+        #not a number
+        #fallback to first page
+        topics = paginator.page(1)
+    except EmptyPage:
+        # page number too large
+        #fallback to last page
+        topics = paginator.page(paginator.num_pages)
+
+    # element do wyswietlania genric elementu paginacji
+    paginate = topics
     
+    context = {'topics': topics,
+               'paginate': paginate}
+
     return render(request, "forum/home.django-html", context)
 
 def about_view(request):
@@ -40,9 +62,27 @@ def topic_view(request, topic_slug):
         topic = get_object_or_404(models.Topic, slug=topic_slug)
     except Http404:
         return redirect('forum:home')
-    # topic = models.Topic.objects.get(slug=topic_slug)
     link_string = reverse('forum:topic', kwargs={'topic_slug':topic_slug})
-    threads = list(topic.threads.all())
+
+    # threads = list(topic.threads.all())
+    queryset = topic.threads.order_by('-date_created')
+    
+    paginator = Paginator(queryset, 10)
+    page = request.GET.get('page', 1)
+
+    try:
+        threads = paginator.page(page)
+    except PageNotAnInteger:
+        #not a number
+        #fallback to first page
+        threads = paginator.page(1)
+    except EmptyPage:
+        # page number too large
+        #fallback to last page
+        threads = paginator.page(paginator.num_pages)
+
+    # element do wyswietlania genric elementu paginacji
+    paginate = threads
 
     links = [{
         'name': topic.name,
@@ -50,7 +90,8 @@ def topic_view(request, topic_slug):
     }]
     context = {'topic': topic,
                'links': links,
-               'threads': threads}
+               'threads': threads,
+               'paginate': paginate}
     return render(request, "forum/topic.django-html", context)
 
 def thread_view(request, topic_slug, thread_slug):
@@ -66,11 +107,27 @@ def thread_view(request, topic_slug, thread_slug):
         return redirect('forum:home')
     thread_link_string = reverse('forum:thread', kwargs={'topic_slug':topic_slug, 'thread_slug': thread_slug})
     
-    posts = list(thread.posts.all())
+    posts = thread.posts.all()
     # print(posts[0].author.profile.bio)
 
     thread.view_count+=1
     thread.save()
+
+    # pagination
+    queryset = thread.posts.order_by('-date_created')
+    
+    paginator = Paginator(queryset, 10)
+    page = request.GET.get('page', 1)
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    # element do wyswietlania genric elementu paginacji
+    paginate = posts
 
     # breadcrumbs links
     links = [{
@@ -84,7 +141,8 @@ def thread_view(request, topic_slug, thread_slug):
         ]
     context = {'thread': thread,
                'links': links,
-               'posts': posts
+               'posts': posts,
+               'paginate': paginate
                }
     return render(request, "forum/thread.django-html", context)
 
@@ -177,7 +235,7 @@ def new_post(request, topic_slug, thread_slug):
     except Http404:
         return redirect('forum:home')
     
-    posts = reversed(thread.posts.all())
+    posts = list(reversed(thread.posts.all()))[:10]
 
     if request.method == 'POST':
         form = NewPostForm(request.POST)

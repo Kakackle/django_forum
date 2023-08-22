@@ -6,6 +6,9 @@
 {% endblock addStyles%}
 
 {% block content %}
+
+{% load humanize %}
+
 {% include 'breadcrumbs.django-html' with links=links%}
 {% comment %} FIXME: ehhh, obrazek nie chce wchodzic, strona nie istnieje mimo
 ze powinno byc okej sciezkami z settings... {% endcomment %}
@@ -31,12 +34,12 @@ przejscia do strony uzytkownika
             <div class="content-div">
                 <div class="content-top">
                     <div class="dates">
-                        <p class="post-info">Date posted: {{post.date_created}}</p>
-                        <p class="post-info">Last update: {{post.date_updated}}</p>
+                        <p class="post-info">Date posted: {{post.date_created|naturaltime}}</p>
+                        <p class="post-info">Last update: {{post.date_updated|naturaltime}}</p>
                     </div>
                     <p class="likes function-link hover">Likes: {{post.like_count}}</p>
                 </div>
-                <p class="content">{{post.content}}</p>
+                <p class="content">{{post.get_message_as_markdown}}</p>
                 <div class="content-bot">
                     {% comment %} {% if post.author != user %}
                     <a class="function-link hover" href="">reply</a>
@@ -53,11 +56,7 @@ przejscia do strony uzytkownika
     </section>
     <a class="reply btn btn-primary" href="{% url 'forum:new_post' topic_slug=thread.topic.slug thread_slug=thread.slug %}">Post a reply</a>
     <div class="pages">
-        <p class="active">1</p>
-        <p>2</p>
-        <p>3</p>
-        <p>...</p>
-        <p>N</p>
+        {% include 'includes/pagination.django-html' with paginate=paginate %}
     </div>
 </main>
 

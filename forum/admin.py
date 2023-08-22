@@ -1,5 +1,6 @@
 from django.contrib import admin
-from forum.models import UserProfile, Topic, Thread, Post
+from users.models import UserProfile
+from forum.models import Topic, Thread, Post
 
 # Register your models here.
 

@@ -3,25 +3,11 @@ from django.contrib.auth.models import User
 from django.utils.text import slugify
 from django.utils.crypto import get_random_string
 
+from django.utils.html import mark_safe
+from markdown import markdown
 # Create your models here.
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    profile_img = models.ImageField(null=True, blank=True, upload_to="profile_images/")
-    slug = models.SlugField(unique=True, default='temp')
-    bio = models.TextField(max_length=500, null=True, blank=True)
-    reputation = models.IntegerField(default=0)
-    post_count = models.PositiveIntegerField(default=0)
-    topic_count = models.PositiveIntegerField(default=0)
-    thread_count = models.PositiveIntegerField(default=0)
 
-    def save(self, *args, **kwargs):
-        if self.slug == 'temp':
-            self.slug = slugify(self.user.username)
-        return super(UserProfile, self).save(*args, **kwargs)
-    
-    def __str__(self):
-        return self.user.username
 
 class Topic(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -76,6 +62,9 @@ class Post(models.Model):
     date_updated = models.DateTimeField(auto_now=True, blank=True, null=True)
     like_count = models.IntegerField(default=0)
     slug = models.SlugField(unique=True, default='temp')
+
+    def get_message_as_markdown(self):
+        return mark_safe(markdown(self.content, safe_mode='escape'))
 
     def save(self, *args, **kwargs):
         if(self.slug=='temp'):

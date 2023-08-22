@@ -1,0 +1,44 @@
+{% comment %} {% if paginate.has_other_pages %} {% endcomment %}
+    <nav aria-label="pagination" class="mb-4">
+        <ul class="pagination">
+        {% if paginate.has_previous %}
+            <li class="page-item">
+            <a class="page-link" href="?page={{ paginate.previous_page_number }}">Previous</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+            <span class="page-link">Previous</span>
+            </li>
+        {% endif %}
+
+        {% for page_num in paginate.paginator.page_range %}
+            {% if paginate.number == page_num %}
+            <li class="page-item active">
+                <span class="page-link">
+                {{ page_num }}
+                <span class="sr-only">(current)</span>
+                </span>
+            </li>
+            {% elif page_num > paginate.number|add:'-3' and page_num < paginate.number|add:'3' %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+                </li>
+            {% comment %} {% else %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+            </li> {% endcomment %}
+            {% endif %}
+        {% endfor %}
+
+        {% if paginate.has_next %}
+            <li class="page-item">
+            <a class="page-link" href="?page={{ paginate.next_page_number }}">Next</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+            <span class="page-link">Next</span>
+            </li>
+        {% endif %}
+        </ul>
+    </nav>
+{% comment %} {% endif %} {% endcomment %}

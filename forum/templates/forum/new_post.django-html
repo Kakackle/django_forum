@@ -2,20 +2,23 @@
 {% load static %}
 {% block title %} Topic Django Form {% endblock title%}
 {% block addStyles %}
-<link rel="stylesheet" href="{% static 'forum/forum.css' %}">
 <link rel="stylesheet" href="{% static 'forum/thread.css' %}">
+<link rel="stylesheet" href="{% static 'forum/forum.css' %}">
 <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 {% endblock addStyles%}
 
 {% block content %}
 
+{% load humanize %}
 {% load crispy_forms_tags %}
 
-<main class="main">
+<main class="main" style="display: block;">
     <form method="post" novalidate>
         {% csrf_token %}
         {{ form | crispy }}
         <button type="submit" class="btn btn-primary">Post</button>
+        <a href="{% url 'forum:thread' thread_slug=thread.slug topic_slug=thread.topic.slug %}" class="btn btn-outline-secondary" role="button">Cancel</a>
     </form>
     <div class="prev-posts">
         <p class="title">Previous posts from the thread (from latest) </p>
@@ -32,24 +35,24 @@
                 <div class="content-div">
                     <div class="content-top">
                         <div class="dates">
-                            <p class="post-info">Date posted: {{post.date_created}}</p>
-                            <p class="post-info">Last update: {{post.date_updated}}</p>
+                            <p class="post-info">Date posted: {{post.date_created|naturaltime}}</p>
+                            <p class="post-info">Last update: {{post.date_updated|naturaltime}}</p>
                         </div>
                         <p class="likes hover">Likes: {{post.like_count}}</p>
                     </div>
-                    <p class="content">{{post.content}}</p>
+                    <p class="content">{{post.get_message_as_markdown}}</p>
                 </div>
             </div>
             {% endfor %}
         </section>
-        <div class="pages">
-            <p class="active">1</p>
-            <p>2</p>
-            <p>3</p>
-            <p>...</p>
-            <p>N</p>
-        </div>
     </div>
 </main>
 
 {% endblock content%}
+
+{% block javascript%}
+<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+<script>
+    var simplemde = new SimpleMDE();
+</script>
+{% endblock javascript %}

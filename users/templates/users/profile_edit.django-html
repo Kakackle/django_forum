@@ -1,0 +1,23 @@
+{% extends 'base.django-html' %}
+{% load static %}
+{% block title %} edit profile {% endblock title %}
+{% block addStyles %}
+<link rel="stylesheet" href="{% static 'forum/thread.css' %}">
+{% endblock addStyles%}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<main class="main">
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form | crispy }}
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        {% comment %} <p>content: {{post.content}}</p>
+        <p>topic: {{post.thread.name}}</p> {% endcomment %}
+        <a href="{% url 'users:user' user_slug=profile.slug %}" class="btn btn-outline-secondary" role="button">Cancel</a>
+    </form>
+</main>
+
+{% endblock content %}
