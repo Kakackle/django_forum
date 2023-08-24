@@ -38,9 +38,9 @@
                         
                         <div class="topic-controls">
                             <a class="topic-link topic-edit hover"
-                                href="{% url 'forum:topic_edit' topic_slug=topic.slug %}">EDIT</a>
+                                href="/">EDIT</a>
                             <a class="topic-link topic-del hover"
-                            href="{% url 'forum:topic_delete' topic_slug=topic.slug %}">DELETE</a>
+                            href="/">DELETE</a>
                         </div>
                     </div>
                 </li>

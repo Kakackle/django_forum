@@ -39,9 +39,9 @@
                         <p class="last-post">{{thread.post_count}} posts</p>                            
                         <div class="topic-controls">
                             <a class="topic-link topic-edit hover"
-                                href="{% url 'forum:thread_edit' topic_slug=topic.slug thread_slug=thread.slug %}">EDIT</a>
+                                href="/">EDIT</a>
                             <a class="topic-link topic-del hover"
-                            href="{% url 'forum:thread_delete' topic_slug=topic.slug thread_slug=thread.slug %}">DELETE</a>
+                            href="/">DELETE</a>
                         </div>
                     </div>
                 </li>

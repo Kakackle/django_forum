@@ -25,4 +25,4 @@ urlpatterns = [
     path('forum/', include('forum.urls', namespace='forum')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path("__reload__/", include("django_browser_reload.urls")),
-] 
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

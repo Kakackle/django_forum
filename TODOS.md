@@ -8,4 +8,6 @@ FIXME: zeby autor nie lubil swojego itd.
 
 FIXME: reputacja z jakiegos powodu nie chce dzialac
 
-FIXME: i kiedy wchodzisz spowrotem w post to lajki sie resetuja? wtf???? 
+FIXME: i kiedy wchodzisz spowrotem w post to lajki sie resetuja? wtf????
+
+TODO: edycje topicow, threadow i delete
