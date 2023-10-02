@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_db=forum
+      - POSTGRES_USER=forum
+      - POSTGRES_PASSWORD=forumforum
+    ports:
+      - "5432:5432"
+  web:
+    build: .
+    # command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn forumproject.wsgi --bind 0.0.0.0:8000 --workers=4
+    volumes:
+      - .:/code/
+    ports:
+      - "8000:8000"
+    image: application:forum
+    container_name: forum_container
+    depends_on:
+      - db

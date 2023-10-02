@@ -8,3 +8,13 @@ i projektu z pulpitu z Udemy, bo ma wszystko prawie
 
 
 i tam gdzies w historii masz part 1-7 tutoriala innego zewnetrznego
+
+
+### + Docker
+1. Listing available containers `docker.ps`
+2. Enter container system `docker exec -it {id} bash`
+3. Rebuild container `docker-compose build {container name, eg. 'web'}` or just `docker-compose build`
+4. Launch container `docker-compose up`
+
+extra:
+clear docker cache `docker builder prune`
