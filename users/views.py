@@ -9,6 +9,9 @@ from .models import UserProfile
 
 # Create your views here.
 
+import logging
+logger = logging.getLogger('user')
+
 def user_view(request, user_slug):
     try:
         user = get_object_or_404(User, username=user_slug)
