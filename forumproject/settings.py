@@ -28,6 +28,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# for debug toolbar
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+
 
 # Application definition
 
@@ -45,7 +50,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'forum',
     'users',
-    'accounts'
+    'accounts',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -166,3 +172,15 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 from .custom_logging import LOGGING
+
+# caching
+# 0.0.0.0 for docker?
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+        },
+    }
+}

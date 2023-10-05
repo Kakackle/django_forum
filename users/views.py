@@ -6,12 +6,15 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse
 from django.views.generic import UpdateView
 from .models import UserProfile
+from django.views.decorators.cache import cache_page
 
 # Create your views here.
 
 import logging
 logger = logging.getLogger('user')
 
+# cache for 5 minutes
+# @cache_page(60*5)
 def user_view(request, user_slug):
     try:
         user = get_object_or_404(User, username=user_slug)
