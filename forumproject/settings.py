@@ -91,16 +91,16 @@ DATABASES = {
     }
 }
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "forum",
-        "USER": "forum",
-        "PASSWORD": "forumforum",
-        "HOST": "db",
-        "PORT": "5432",
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "forum",
+#         "USER": "forum",
+#         "PASSWORD": "forumforum",
+#         "HOST": "db",
+#         "PORT": "5432",
+#     }
+# }
 
 
 # Password validation

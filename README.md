@@ -11,10 +11,26 @@ i tam gdzies w historii masz part 1-7 tutoriala innego zewnetrznego
 
 
 ### + Docker
-1. Listing available containers `docker.ps`
+1. Listing available containers `docker ps`
 2. Enter container system `docker exec -it {id} bash`
 3. Rebuild container `docker-compose build {container name, eg. 'web'}` or just `docker-compose build`
+OR, better yet, if changes were made: `docker-compose up --build` with optionally `--build {container name eg. weg}`
 4. Launch container `docker-compose up`
 
 extra:
 clear docker cache `docker builder prune`
+
+
+### Testing with coverage in nice html format
+
+1. change database to local sqlite from postgres hosted in container
+2. `python manage.py migrate`
+3. `coverage run manage.py test`
+4. `coverage html`
+
+
+# Style, linting
+
+Flake8 config in config.cfg
+
+run `flake8`
