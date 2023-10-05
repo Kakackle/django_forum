@@ -1,0 +1,147 @@
+.main{
+    max-width: var(--max-page-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    padding: 20px;
+    gap: 10px;
+}
+
+.head-1{
+    font-size: 64px;
+    
+    align-self: center;
+    /* justify-self: center; */
+}
+
+.head-3{
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 40px;
+}
+
+.controls{
+    /* width: 100%; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.label-div{
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.label-div label{
+    font-size: 20px;
+}
+
+.label-div input{
+    font-size: 20px;
+    padding: 4px 10px;
+    color: var(--gray-light);
+}
+
+.add-link{
+    text-decoration: none;
+    font-size: 20px;
+    background-color: var(--accent-yellow);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 5px;
+    border: 2px solid var(--main-dark-blue);
+}
+
+.topics-div{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
+.topics-list{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    border: 2px solid var(--gray-light);
+    padding: 0;
+}
+
+.topics-item{
+    font-size: 30px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.topics-item:nth-of-type(even){
+    background-color: var(--gray-light);
+    /* border-top: 1px solid black; */
+}
+
+.topic-link{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+.topic-link:hover{
+    border-bottom: 2px solid black;
+}
+
+.topic-left{
+    justify-self: flex-start;
+}
+
+.topic-right{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.last-post{
+    margin-bottom: 0;
+}
+
+.author{
+    font-size: 15px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.topic-controls{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.pages{
+    align-self: center;
+    font-size: 20px;
+    display: flex;
+    gap: 5px;
+}
+
+.active{
+    font-weight: 600;
+}
+
+.btn-dark-blue{
+    background-color: var(--main-dark-blue);
+    color: white;
+}
+
+/* .hover:hover{
+    border-bottom: 2px solid black;
+} */
+
+.last-post{
+    font-size: 15px;
+    font-weight: 300;
+}

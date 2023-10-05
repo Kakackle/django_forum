@@ -5,7 +5,7 @@ from django.utils.text import slugify
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    profile_img = models.ImageField(null=True, blank=True, upload_to="profile_images/")
+    profile_img = models.ImageField(null=True, blank=True, upload_to="profile_images/", default="../static/imgs/profile-image-default.png")
     slug = models.SlugField(unique=True, default='temp')
     bio = models.TextField(max_length=500, null=True, blank=True)
     reputation = models.IntegerField(default=0)
