@@ -11,9 +11,9 @@ jobs:
       db:
         image: postgres
         env:
-          - POSTGRES_db=forum
-          - POSTGRES_USER=forum
-          - POSTGRES_PASSWORD=forumforum
+          - POSTGRES_db: forum
+          - POSTGRES_USER: forum
+          - POSTGRES_PASSWORD: forumforum
 
     steps:
       - name: Checkout code
