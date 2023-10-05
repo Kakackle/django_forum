@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.10.9-buster
 
 # for logging python during build
 ENV PYTHONBUFFERED=1
