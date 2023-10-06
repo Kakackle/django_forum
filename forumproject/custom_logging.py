@@ -16,7 +16,7 @@ LOGGING = {
         },
         'file_handler': {
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': f"{BASE_DIR}/forumproject/logs/forumlog.log",
+            'filename': f"{BASE_DIR}/logs/forumlog.log",
             'mode': 'a',
             'encoding': 'utf-8',
             'formatter': 'standard',

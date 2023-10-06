@@ -14,7 +14,7 @@ import logging
 logger = logging.getLogger('user')
 
 # cache for 5 minutes
-@cache_page(60*5)
+# @cache_page(60*5)
 def user_view(request, user_slug):
     try:
         user = get_object_or_404(User, username=user_slug)
