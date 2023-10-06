@@ -23,7 +23,7 @@ import debug_toolbar
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls', namespace='users')),
-    path('', include('forum.urls', namespace='forum')),
+    path('forum/', include('forum.urls', namespace='forum')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path("__reload__/", include("django_browser_reload.urls")),
     path('__debug__/', include(debug_toolbar.urls)),
