@@ -1,10 +1,10 @@
 from selenium import webdriver
 from forum.models import Topic
-from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase, LiveServerTestCase
 from django.urls import reverse
 import time
 
-class TestForumHomePage(StaticLiveServerTestCase):
+class TestForumHomePage(LiveServerTestCase):
 
     # def test_foo(self):
     #     self.assertEquals(0, 1)
